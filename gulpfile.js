@@ -14,8 +14,8 @@ function replaceFontFace() {
       "@font-face {",
       "  font-family: 'fontello';",
       "  src: url('../fonts/fontello.woff') format('woff');",
-      "  font-weight: normal",
-      "  font-style: normal",
+      "  font-weight: normal;",
+      "  font-style: normal;",
       "}",
       "",
       ""
@@ -29,7 +29,8 @@ function replaceFontFace() {
 
 gulp.task('build', function() {
   return gulp
-    .src('../vendor/assets/stylesheets/fontello.css')
+    .src(['../vendor/assets/stylesheets/fontello.css', '../vendor/assets/stylesheets/animation.css'])
+  .pipe(concat('fontello.css'))
     .pipe(replaceFontFace())
     .pipe(base64({
       extensions: ['woff'],
