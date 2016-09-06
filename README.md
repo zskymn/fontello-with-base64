@@ -16,7 +16,7 @@
     $ git clone https://github.com/zskymn/fontello-with-base64.git
     $ cd fontello-with-base64
     $ npm install
-    $ grunt build
+    $ gulp build
     ```
     
-    **grunt build之后fontello-with-base64目录下会生成最终的css文件fontello.css**
+    **gulp build之后fontello-with-base64目录下会生成最终的css文件fontello.css**
