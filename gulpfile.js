@@ -4,6 +4,7 @@ var gulp = require('gulp'),
   through = require('through2'),
   concat = require('gulp-concat'),
   base64 = require('gulp-base64'),
+  sass = require('gulp-sass'),
   cssbeautify = require('gulp-cssbeautify');
 
 var through = require('through2');
@@ -14,8 +15,8 @@ function replaceFontFace() {
       "@font-face {",
       "  font-family: 'fontello';",
       "  src: url('../fonts/fontello.woff') format('woff');",
-      "  font-weight: normal",
-      "  font-style: normal",
+      "  font-weight: normal;",
+      "  font-style: normal;",
       "}",
       "",
       ""
@@ -29,12 +30,14 @@ function replaceFontFace() {
 
 gulp.task('build', function() {
   return gulp
-    .src('../vendor/assets/stylesheets/fontello.css')
+    .src(['../vendor/assets/stylesheets/fontello.scss', '../vendor/assets/stylesheets/animation.css'])
+  .pipe(concat('fontello.css'))
     .pipe(replaceFontFace())
     .pipe(base64({
       extensions: ['woff'],
       debug: true
     }))
+    .pipe(sass())
     .pipe(cssbeautify({
       indent: '  '
     }))
