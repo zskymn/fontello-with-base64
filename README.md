@@ -18,3 +18,5 @@
     $ npm install
     $ grunt build
     ```
+    
+    **grunt build之后fontello-with-base64目录下会生成最终的css文件fontello.css**

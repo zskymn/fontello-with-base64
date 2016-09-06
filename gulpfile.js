@@ -10,7 +10,7 @@ var gulp = require('gulp'),
 var through = require('through2');
 
 function replaceFontFace() {
-  return through.obj(function(file, encoding, callback) {
+  return through.obj(function (file, encoding, callback) {
     var newFontFace = [
       "@font-face {",
       "  font-family: 'fontello';",
@@ -21,17 +21,18 @@ function replaceFontFace() {
       "",
       ""
     ].join('\n');
-    file.contents = Buffer.concat([new Buffer(newFontFace), new Buffer(String(file.contents).split('\n').slice(21).join('\n'))]);
+    file.contents = Buffer.concat([new Buffer(newFontFace), new Buffer(String(file.contents).split('\n').slice(21).join(
+      '\n'))]);
     callback(null, file);
-  }, function(callback) {
+  }, function (callback) {
     callback();
   });
 }
 
-gulp.task('build', function() {
+gulp.task('build', function () {
   return gulp
     .src(['../vendor/assets/stylesheets/fontello.scss', '../vendor/assets/stylesheets/animation.css'])
-  .pipe(concat('fontello.css'))
+    .pipe(concat('fontello.css'))
     .pipe(replaceFontFace())
     .pipe(base64({
       extensions: ['woff'],
